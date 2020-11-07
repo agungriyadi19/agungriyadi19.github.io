@@ -1,0 +1,30 @@
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #e3f2fd
+}
+
+main{
+    flex: 1 0 auto;
+}
+
+p{
+    text-align: justify;
+}
+
+img{
+    margin-right: 15px;
+}
+
+.border-radius{
+    border-radius: 10px;
+}
+
+.padding{
+    padding: 3px;
+}
+
+footer{
+    margin-top: auto;
+}

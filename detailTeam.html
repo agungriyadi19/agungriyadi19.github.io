@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Detail Team</title>
+        <meta name="description" content="Football News" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="theme-color" content="#3d195b" />
+        <link rel="apple-touch-icon" href="img/icon.png">
+        <link rel="shortcut icon" href="img/icon.png">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- nav -->
+        <nav class="blue darken-4" role="navigation">
+            <div class="nav-wrapper container">
+                <a href="#" class="brand-logo" id="logo-container">Detail Team</a>
+                <a href="javascript:back()" class="sidenav-trigger" data-target="nav-mobile">
+                    <i class="material-icons">arrow_back</i>
+                </a>
+                <ul class="topnav right hide-on-med-and-down"></ul>
+                <ul class="sidenav" id="nav-mobile"></ul>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div class="container">
+            <div class="row">
+                        <div class="card-content">
+                            <div class="center-align" id="preloader">
+                                <div class="preloader-wrapper big active">
+                                    <div class="spinner-layer spinner-blue">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                              
+                                    <div class="spinner-layer spinner-red">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                              
+                                    <div class="spinner-layer spinner-yellow">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                              
+                                    <div class="spinner-layer spinner-green">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-panel white lighten-1 z-depth-1 border-radius">
+                            <h4 class="center-align">About Team</h4>
+                            <div class="center-align" style="margin-top: 10px;">
+                                <img id="crestUrl" width="150" height="150">
+                                <h4 id="nameHeader"></h4>
+                            </div>
+                                <table class="highlight">
+                                    <thead>
+
+                                    </thead>
+                                    <tbody id="tableOverview"></tbody>
+                                </table>
+                            </div>
+
+                            <div class="card-panel white lighten-1 z-depth-1 border-radius">
+                                <h4 class="center-align">Player</h4>
+                                <table class="highlight">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Player Name</th>
+                                            <th>Position</th>
+                                            <th>Nationality</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableSquad"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                
+        </div>
+
+        <!-- FAB -->
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red" id="fabFavorite">
+                <i class="large material-icons">favorite_border</i>
+            </a>
+        </div>
+
+        <footer class="padding blue darken-4 white-text">
+            <p class="center-align">submission &#169; 2020, Agung Riyadi</p>
+          </footer>
+
+        <!-- Scripts -->
+        <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+        <script src="js/materialize.min.js"></script>
+        <script src="js/api.js"></script>
+        <script src="js/idb.js"></script>
+        <script src="js/db.js"></script>
+        <script src="js/myScript.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var urlParams = new URLSearchParams(window.location.search);
+                var teamID = Number(urlParams.get("id"));
+                var isFromSaved = urlParams.get("saved");
+
+                var btnFav = document.getElementById("fabFavorite");
+                
+                if (isFromSaved) {
+                    btnFav.style.display = "none";
+                    getFavoriteById(teamID, "team");
+                } else {
+                    var item = getTeamDetail(teamID);
+                }
+
+                btnFav.onclick = function() {
+                    item.then(function(team) {
+                        addToFavorite(team, "favorite_team");
+                    });
+                };
+            });
+        </script>
+
+        <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script> 
+    </body>
+</html>
